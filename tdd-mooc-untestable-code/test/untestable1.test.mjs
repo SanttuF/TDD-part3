@@ -7,5 +7,6 @@ describe("Untestable 1: days until Christmas", () => {
     expect(daysUntilChristmas()).to.be.a("number");
     expect(daysUntilChristmas(new Date(1880, 11, 24))).to.equal(1)
     expect(daysUntilChristmas(new Date(1880, 11, 26))).to.equal(364)
+    expect(daysUntilChristmas(new Date(1880, 11, 25))).to.equal(0)
   });
 });
