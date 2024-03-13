@@ -10,14 +10,16 @@ Yor,Forger,27,Female
 `
 
 describe("Untestable 3: CSV file parsing", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     try {
-      writeFile('./test.csv', input)
+      await writeFile('./test.csv', input)
+      await writeFile('./test2.csv', '')
     } catch (e) {}
   })
-  afterEach(() => {
+  afterEach(async () => {
     try {
-      unlink('./test.csv')
+      await unlink('./test.csv')
+      await unlink('./test2.csv')
     } catch (e) {}
   })
 
@@ -34,4 +36,14 @@ describe("Untestable 3: CSV file parsing", () => {
       { firstName: 'Yor', lastName: 'Forger', gender: 'f', age: 27 }
     ])
   });
+
+  test('parses empty', async () => {
+    let r
+    
+    try {
+      r = await parsePeopleCsv("./test2.csv")
+    } catch (e) {}
+
+    expect(r).to.deep.equal([])
+  })
 });
