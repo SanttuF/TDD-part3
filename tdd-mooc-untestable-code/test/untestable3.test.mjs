@@ -20,11 +20,18 @@ describe("Untestable 3: CSV file parsing", () => {
       unlink('./test.csv')
     } catch (e) {}
   })
-  
-  test("todo", async () => {
-    // TODO: write proper tests
+
+  test("parser parses correctly", async () => {
+    let r
+    
     try {
-      expect(await parsePeopleCsv("people.csv")).to.deep.equal([]);
+      r = await parsePeopleCsv("./test.csv")
     } catch (e) {}
+
+    expect(r).to.deep.equal([
+      { firstName: 'Loid', lastName: 'Forger', gender: 'm' },
+      { firstName: 'Anya', lastName: 'Forger', gender: 'f', age: 6 },
+      { firstName: 'Yor', lastName: 'Forger', gender: 'f', age: 27 }
+    ])
   });
 });
