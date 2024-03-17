@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, test, vi } from "vitest";
+import { afterAll, beforeAll, describe, test } from "vitest";
 import { PasswordService, PostgresUserDao } from "../src/untestable4.mjs";
 import { expect } from "chai";
 import argon2 from "@node-rs/argon2";
@@ -39,6 +39,15 @@ describe("Untestable 4: enterprise application", () => {
     service.changePassword(1, 'abc123', 'def456')
     const user = await service.users.getById(1)
     expect(await argon2.verify(user.passwordHash, 'def456')).to.be.true
+  })
+
+  test('cant change with wrong password', async () => {
+    try{
+    await service.changePassword(1, 'wrong password', 'qwer')
+    expect(false).to.be.true
+    } catch (e) {
+      expect(true).to.be.true
+    }
   })
 });
 
