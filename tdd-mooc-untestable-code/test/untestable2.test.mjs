@@ -1,6 +1,6 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import { diceHandValue } from "../src/untestable2.mjs";
+import { diceHandValue } from "../src/untestable2copy.mjs";
 
 describe("Untestable 2: a dice game", () => {
   test("test same fixed roll", () => {

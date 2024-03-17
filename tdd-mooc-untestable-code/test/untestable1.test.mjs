@@ -1,6 +1,6 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import { daysUntilChristmas } from "../src/untestable1.mjs";
+import { daysUntilChristmas } from "../src/untestable1copy.mjs";
 
 describe("Untestable 1: days until Christmas", () => {
   test("counts correctly", () => {

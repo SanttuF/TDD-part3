@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
-import { parsePeopleCsv } from "../src/untestable3.mjs";
+import { parsePeopleCsv } from "../src/untestable3copy.mjs";
 import { writeFile, unlink } from "node:fs/promises";
 
 const input = `
