@@ -43,8 +43,8 @@ describe("Untestable 4: enterprise application", () => {
 
   test('cant change with wrong password', async () => {
     try{
-    await service.changePassword(1, 'wrong password', 'qwer')
-    expect(false).to.be.true
+      await service.changePassword(1, 'wrong password', 'qwer')
+      expect(false).to.be.true
     } catch (e) {
       expect(true).to.be.true
     }
