@@ -1,4 +1,4 @@
-import { afterAll, afterEach, beforeAll, beforeEach, describe, test, vi } from "vitest";
+import { afterAll, beforeAll, describe, test, vi } from "vitest";
 import { PasswordService, PostgresUserDao } from "../src/untestable4.mjs";
 import { expect } from "chai";
 import argon2 from "@node-rs/argon2";
@@ -24,7 +24,7 @@ describe("Untestable 4: enterprise application", () => {
   });
 
   test('can save and get people into and from the database', async () => {
-    await service.users.save({userId: 1, passwordHash: 'abc123'})
+    await service.users.save({userId: 1, passwordHash: argon2.hashSync('abc123')})
     const user = await service.users.getById(1)
     expect(user).toBeDefined()
     expect(user.userId).to.equal(1)
@@ -35,8 +35,10 @@ describe("Untestable 4: enterprise application", () => {
     expect(user).to.equal(null)
   })
 
-  // test('can change password', async () => {
-
-  // })
+  test('can change password', async () => {
+    service.changePassword(1, 'abc123', 'def456')
+    const user = await service.users.getById(1)
+    expect(await argon2.verify(user.passwordHash, 'def456')).to.be.true
+  })
 });
 
